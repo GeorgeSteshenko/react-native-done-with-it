@@ -18,6 +18,9 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "Get rid of things you no longer need."
+    "description": "Get rid of things you no longer need.",
+    "notification": {
+      "iosDisplayInForeground": true
+    }
   }
 }
