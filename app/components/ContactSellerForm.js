@@ -36,7 +36,7 @@ function ContactSellerForm({ listing }) {
         multiline
         name="message"
         numberOfLines={3}
-        placeholfer="Message..."
+        placeholder="Message..."
       />
       <SubmitButton title="Contact Seller" />
     </AppForm>

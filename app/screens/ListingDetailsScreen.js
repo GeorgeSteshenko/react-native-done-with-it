@@ -13,7 +13,7 @@ function ListingDetailsScreen({ route }) {
   return (
     <KeyboardAvoidingView
       behavior="position"
-      keyboardVerticalOffset={Platform.OS === ios ? 0 : 100}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
     >
       <View>
         <Image
