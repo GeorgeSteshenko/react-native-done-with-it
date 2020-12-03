@@ -2,8 +2,8 @@ import React from "react";
 import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { Image } from "react-native-expo-image-cache";
 
+import Text from "./Text";
 import colors from "../config/colors";
-import AppText from "./AppText";
 
 function Card({ title, subTitle, imageUrl, onPress, thumbnailUrl }) {
   return (
@@ -14,14 +14,14 @@ function Card({ title, subTitle, imageUrl, onPress, thumbnailUrl }) {
           tint="light"
           preview={{ uri: thumbnailUrl }}
           uri={imageUrl}
-        ></Image>
+        />
         <View style={styles.detailsContainer}>
-          <AppText style={styles.title} numberOfLines={1}>
+          <Text style={styles.title} numberOfLines={1}>
             {title}
-          </AppText>
-          <AppText style={styles.subTitle} numberOfLines={2}>
+          </Text>
+          <Text style={styles.subTitle} numberOfLines={2}>
             {subTitle}
-          </AppText>
+          </Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     height: 200,
   },
   subTitle: {
-    color: colors.primary,
+    color: colors.secondary,
     fontWeight: "bold",
   },
   title: {

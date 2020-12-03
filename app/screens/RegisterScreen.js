@@ -1,17 +1,17 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
-import {
-  AppForm,
-  AppFormField,
-  SubmitButton,
-  ErrorMessage,
-} from "../components/forms";
-import authApi from "../api/auth";
 import usersApi from "../api/users";
+import authApi from "../api/auth";
 import useAuth from "../auth/useAuth";
+import {
+  ErrorMessage,
+  Form,
+  FormField,
+  SubmitButton,
+} from "../components/forms";
 import useApi from "../hooks/useApi";
 import ActivityIndicator from "../components/ActivityIndicator";
 
@@ -47,22 +47,22 @@ function RegisterScreen() {
   };
 
   return (
-    <Fragment>
+    <>
       <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
       <Screen style={styles.container}>
-        <AppForm
+        <Form
           initialValues={{ name: "", email: "", password: "" }}
           onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
           <ErrorMessage error={error} visible={error} />
-          <AppFormField
+          <FormField
             autoCorrect={false}
             icon="account"
             name="name"
             placeholder="Name"
           />
-          <AppFormField
+          <FormField
             autoCapitalize="none"
             autoCorrect={false}
             icon="email"
@@ -71,7 +71,7 @@ function RegisterScreen() {
             placeholder="Email"
             textContentType="emailAddress"
           />
-          <AppFormField
+          <FormField
             autoCapitalize="none"
             autoCorrect={false}
             icon="lock"
@@ -81,9 +81,9 @@ function RegisterScreen() {
             textContentType="password"
           />
           <SubmitButton title="Register" />
-        </AppForm>
+        </Form>
       </Screen>
-    </Fragment>
+    </>
   );
 }
 

@@ -1,16 +1,12 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Notifications } from "expo";
-import * as Permissions from "expo-permissions";
 
+import AccountNavigator from "./AccountNavigator";
+import FeedNavigator from "./FeedNavigator";
 import ListingEditScreen from "../screens/ListingEditScreen";
-
-import FeedNavigator from "./FeedNavigator.js";
-import AccountNavigator from "./AccoutNavigator";
 import NewListingButton from "./NewListingButton";
-
-import routs from "../navigation/routs";
+import routes from "./routes";
 import navigation from "./rootNavigation";
 import useNotifications from "../hooks/useNotifications";
 
@@ -36,7 +32,7 @@ const AppNavigator = () => {
         options={({ navigation }) => ({
           tabBarButton: () => (
             <NewListingButton
-              onPress={() => navigation.navigate(routs.LISTING_EDIT)}
+              onPress={() => navigation.navigate(routes.LISTING_EDIT)}
             />
           ),
           tabBarIcon: ({ color, size }) => (

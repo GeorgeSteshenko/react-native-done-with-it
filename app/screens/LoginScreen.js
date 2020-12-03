@@ -5,9 +5,9 @@ import * as Yup from "yup";
 import Screen from "../components/Screen";
 import {
   ErrorMessage,
-  AppFormField,
+  Form,
+  FormField,
   SubmitButton,
-  AppForm,
 } from "../components/forms";
 import authApi from "../api/auth";
 import useAuth from "../auth/useAuth";
@@ -18,23 +18,21 @@ const validationSchema = Yup.object().shape({
 });
 
 function LoginScreen(props) {
-  const { logIn } = useAuth();
+  const auth = useAuth();
   const [loginFailed, setLoginFailed] = useState(false);
 
   const handleSubmit = async ({ email, password }) => {
     const result = await authApi.login(email, password);
-
     if (!result.ok) return setLoginFailed(true);
-
     setLoginFailed(false);
-
-    logIn(result.data);
+    auth.logIn(result.data);
   };
 
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-      <AppForm
+
+      <Form
         initialValues={{ email: "", password: "" }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
@@ -43,26 +41,26 @@ function LoginScreen(props) {
           error="Invalid email and/or password."
           visible={loginFailed}
         />
-        <AppFormField
+        <FormField
           autoCapitalize="none"
           autoCorrect={false}
-          logo="email"
+          icon="email"
           keyboardType="email-address"
           name="email"
           placeholder="Email"
           textContentType="emailAddress"
         />
-        <AppFormField
+        <FormField
           autoCapitalize="none"
           autoCorrect={false}
-          logo="lock"
+          icon="lock"
           name="password"
           placeholder="Password"
           secureTextEntry
           textContentType="password"
         />
         <SubmitButton title="Login" />
-      </AppForm>
+      </Form>
     </Screen>
   );
 }

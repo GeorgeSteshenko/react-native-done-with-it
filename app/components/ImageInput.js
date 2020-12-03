@@ -6,7 +6,6 @@ import {
   TouchableWithoutFeedback,
   Alert,
 } from "react-native";
-
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 
@@ -19,8 +18,7 @@ function ImageInput({ imageUri, onChangeImage }) {
 
   const requestPermission = async () => {
     const { granted } = await ImagePicker.requestCameraRollPermissionsAsync();
-    if (!granted)
-      alert("You need to enable permission to access the photo library.");
+    if (!granted) alert("You need to enable permission to access the library.");
   };
 
   const handlePress = () => {
@@ -62,17 +60,18 @@ function ImageInput({ imageUri, onChangeImage }) {
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: "center",
     backgroundColor: colors.light,
     borderRadius: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    width: 100,
     height: 100,
+    justifyContent: "center",
+    marginVertical: 10,
     overflow: "hidden",
+    width: 100,
   },
   image: {
-    width: "100%",
     height: "100%",
+    width: "100%",
   },
 });
 

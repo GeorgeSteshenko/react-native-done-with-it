@@ -1,7 +1,8 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
+
 import Icon from "./Icon";
-import AppText from "./AppText";
+import Text from "./Text";
 
 function CategoryPickerItem({ item, onPress }) {
   return (
@@ -13,17 +14,17 @@ function CategoryPickerItem({ item, onPress }) {
           size={80}
         />
       </TouchableOpacity>
-      <AppText style={styles.label}>{item.label}</AppText>
+      <Text style={styles.label}>{item.label}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: "33%",
     paddingHorizontal: 30,
     paddingVertical: 15,
     alignItems: "center",
+    width: "33%",
   },
   label: {
     marginTop: 5,

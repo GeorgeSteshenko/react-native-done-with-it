@@ -1,10 +1,8 @@
 import React from "react";
 import { ImageBackground, StyleSheet, View, Image, Text } from "react-native";
 
-import colors from "../config/colors";
-import AppButton from "../components/AppButton";
-
-import routs from "../navigation/routs";
+import Button from "../components/Button";
+import routes from "../navigation/routes";
 
 function WelcomeScreen({ navigation }) {
   return (
@@ -15,17 +13,17 @@ function WelcomeScreen({ navigation }) {
     >
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-        <Text style={styles.tagLine}>Sell What You Don't Need</Text>
+        <Text style={styles.tagline}>Sell What You Don't Need</Text>
       </View>
-      <View style={styles.buttonContainer}>
-        <AppButton
-          title="login"
-          onPress={() => navigation.navigate(routs.LOGIN)}
+      <View style={styles.buttonsContainer}>
+        <Button
+          title="Login"
+          onPress={() => navigation.navigate(routes.LOGIN)}
         />
-        <AppButton
-          title="register"
-          onPress={() => navigation.navigate(routs.REGISTER)}
+        <Button
+          title="Register"
           color="secondary"
+          onPress={() => navigation.navigate(routes.REGISTER)}
         />
       </View>
     </ImageBackground>
@@ -38,9 +36,9 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
   },
-  buttonContainer: {
-    width: "100%",
+  buttonsContainer: {
     padding: 20,
+    width: "100%",
   },
   logo: {
     width: 100,
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
     top: 70,
     alignItems: "center",
   },
-  tagLine: {
+  tagline: {
     fontSize: 25,
     fontWeight: "600",
     paddingVertical: 20,

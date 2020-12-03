@@ -15,7 +15,6 @@ function Icon({
         height: size,
         borderRadius: size / 2,
         backgroundColor,
-        color: iconColor,
         justifyContent: "center",
         alignItems: "center",
       }}

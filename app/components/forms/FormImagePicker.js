@@ -20,14 +20,14 @@ function FormImagePicker({ name }) {
   };
 
   return (
-    <React.Fragment>
+    <>
       <ImageInputList
         imageUris={imageUris}
         onAddImage={handleAdd}
         onRemoveImage={handleRemove}
       />
       <ErrorMessage error={errors[name]} visible={touched[name]} />
-    </React.Fragment>
+    </>
   );
 }
 

@@ -3,7 +3,7 @@ import { Alert, Keyboard } from "react-native";
 import { Notifications } from "expo";
 import * as Yup from "yup";
 
-import { AppForm, AppFormField, SubmitButton } from "./forms";
+import { Form, FormField, SubmitButton } from "./forms";
 import messagesApi from "../api/messages";
 
 function ContactSellerForm({ listing }) {
@@ -14,7 +14,7 @@ function ContactSellerForm({ listing }) {
 
     if (!result.ok) {
       console.log("Error", result);
-      return Alert.alert("Error", "Couldn't send the message to the seller.");
+      return Alert.alert("Error", "Could not send the message to the seller.");
     }
 
     resetForm();
@@ -26,12 +26,12 @@ function ContactSellerForm({ listing }) {
   };
 
   return (
-    <AppForm
+    <Form
       initialValues={{ message: "" }}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      <AppFormField
+      <FormField
         maxLength={255}
         multiline
         name="message"
@@ -39,7 +39,7 @@ function ContactSellerForm({ listing }) {
         placeholder="Message..."
       />
       <SubmitButton title="Contact Seller" />
-    </AppForm>
+    </Form>
   );
 }
 

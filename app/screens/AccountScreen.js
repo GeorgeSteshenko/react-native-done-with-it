@@ -1,12 +1,11 @@
 import React from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 
-import Screen from "../components/Screen";
-import ListItem from "../components/ListItem";
-
+import { ListItem, ListItemSeparator } from "../components/lists";
 import colors from "../config/colors";
 import Icon from "../components/Icon";
-import ListItemSeparator from "../components/ListItemSeparator";
+import routes from "../navigation/routes";
+import Screen from "../components/Screen";
 import useAuth from "../auth/useAuth";
 
 const menuItems = [
@@ -23,7 +22,7 @@ const menuItems = [
       name: "email",
       backgroundColor: colors.secondary,
     },
-    targetScreen: "Messages",
+    targetScreen: routes.MESSAGES,
   },
 ];
 
@@ -68,11 +67,11 @@ function AccountScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginVertical: 20,
-  },
   screen: {
     backgroundColor: colors.light,
+  },
+  container: {
+    marginVertical: 20,
   },
 });
 

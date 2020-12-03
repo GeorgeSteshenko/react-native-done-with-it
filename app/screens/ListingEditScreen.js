@@ -1,25 +1,23 @@
 import React, { useState } from "react";
-// Extenral libs
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
-// App components
-import Screen from "../components/Screen";
+
 import {
-  AppForm,
-  AppFormField,
-  AppFormPicker,
+  Form,
+  FormField,
+  FormPicker as Picker,
   SubmitButton,
-  FormImagePicker,
 } from "../components/forms";
 import CategoryPickerItem from "../components/CategoryPickerItem";
+import Screen from "../components/Screen";
+import FormImagePicker from "../components/forms/FormImagePicker";
 import listingsApi from "../api/listings";
-// App hooks
 import useLocation from "../hooks/useLocation";
 import UploadScreen from "./UploadScreen";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
-  price: Yup.string().required().min(1).max(10000).label("Price"),
+  price: Yup.number().required().min(1).max(10000).label("Price"),
   description: Yup.string().label("Description"),
   category: Yup.object().required().nullable().label("Category"),
   images: Yup.array().min(1, "Please select at least one image."),
@@ -27,35 +25,58 @@ const validationSchema = Yup.object().shape({
 
 const categories = [
   {
+    backgroundColor: "#fc5c65",
+    icon: "floor-lamp",
     label: "Furniture",
     value: 1,
-    backgroundColor: "coral",
-    icon: "floor-lamp",
   },
   {
-    label: "Clothing",
+    backgroundColor: "#fd9644",
+    icon: "car",
+    label: "Cars",
     value: 2,
-    backgroundColor: "lightblue",
-    icon: "shoe-heel",
   },
-  { label: "Camera", value: 3, backgroundColor: "gold", icon: "camera" },
   {
-    label: "Movies & Music",
+    backgroundColor: "#fed330",
+    icon: "camera",
+    label: "Cameras",
+    value: 3,
+  },
+  {
+    backgroundColor: "#26de81",
+    icon: "cards",
+    label: "Games",
     value: 4,
-    backgroundColor: "dodgerblue",
+  },
+  {
+    backgroundColor: "#2bcbba",
+    icon: "shoe-heel",
+    label: "Clothing",
+    value: 5,
+  },
+  {
+    backgroundColor: "#45aaf2",
+    icon: "basketball",
+    label: "Sports",
+    value: 6,
+  },
+  {
+    backgroundColor: "#4b7bec",
     icon: "headphones",
+    label: "Movies & Music",
+    value: 7,
   },
   {
-    label: "Books",
-    value: 3,
-    backgroundColor: "mediumpurple",
+    backgroundColor: "#a55eea",
     icon: "book-open-variant",
+    label: "Books",
+    value: 8,
   },
   {
+    backgroundColor: "#778ca3",
+    icon: "application",
     label: "Other",
-    value: 3,
-    backgroundColor: "lightslategray",
-    icon: "window-maximize",
+    value: 9,
   },
 ];
 
@@ -74,7 +95,7 @@ function ListingEditScreen() {
 
     if (!result.ok) {
       setUploadVisible(false);
-      return alert("Could not save the listing.");
+      return alert("Could not save the listing");
     }
 
     resetForm();
@@ -87,7 +108,7 @@ function ListingEditScreen() {
         progress={progress}
         visible={uploadVisible}
       />
-      <AppForm
+      <Form
         initialValues={{
           title: "",
           price: "",
@@ -99,15 +120,15 @@ function ListingEditScreen() {
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
-        <AppFormField maxLength={255} name="title" placeholder="Title" />
-        <AppFormField
+        <FormField maxLength={255} name="title" placeholder="Title" />
+        <FormField
           keyboardType="numeric"
           maxLength={8}
           name="price"
           placeholder="Price"
           width={120}
         />
-        <AppFormPicker
+        <Picker
           items={categories}
           name="category"
           numberOfColumns={3}
@@ -115,7 +136,7 @@ function ListingEditScreen() {
           placeholder="Category"
           width="50%"
         />
-        <AppFormField
+        <FormField
           maxLength={255}
           multiline
           name="description"
@@ -123,7 +144,7 @@ function ListingEditScreen() {
           placeholder="Description"
         />
         <SubmitButton title="Post" />
-      </AppForm>
+      </Form>
     </Screen>
   );
 }
@@ -132,13 +153,5 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
   },
-  logo: {
-    width: 80,
-    height: 80,
-    alignSelf: "center",
-    marginTop: 50,
-    marginBottom: 20,
-  },
 });
-
 export default ListingEditScreen;
